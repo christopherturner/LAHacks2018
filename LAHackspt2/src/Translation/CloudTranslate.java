@@ -7,17 +7,16 @@ import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 
 public class CloudTranslate {
-		
 
-
-	public static String translatePlz(String toTranslate,String inputCode, String outputCode) {
+	
+	public static String translateText(String text, String inputCode, String outputCode) {
 		 // Instantiates a client
 		 Translate translate = TranslateOptions.getDefaultInstance().getService();
 
 		 // Translates some text into Russian
 		 Translation translation =
 		     translate.translate(
-		         toTranslate,
+		         text,
 		         TranslateOption.sourceLanguage(inputCode),
 		         TranslateOption.targetLanguage(outputCode));
 
@@ -30,7 +29,7 @@ public class CloudTranslate {
 	
 	
 	public static void main(String... args) throws Exception {
-			 System.out.println(translatePlz("Guten tag","de","en"));
+			 System.out.println(translateText("Guten tag","de","en"));
 		}
 	
 }
