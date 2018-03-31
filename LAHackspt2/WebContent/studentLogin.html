@@ -3,14 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="CSS/student.css" />
 		<link rel="stylesheet" type="text/css" href="CSS/index.css" />
+		
 		<!-----CSS----->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="cover.css">
 
 		<!-----Scripts----->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script src="cover.js"></script>
+		<script src="javascript/studentLogin.js"></script>
 		<title>Scryb Home</title>
 
 	</head>
@@ -24,15 +26,20 @@
 
 		<div class="row">
 			<div class="col text-center">
-				<a class="role-button" href="#">
-					<button type="button" class="btn btn-primary btn-lg" id="teacher">Teacher</button>
-				</a>
+				<form class="form-signin">
+					<h2 class="form-signin-heading">Please select session</h2>
+					<div class="list-group">
+						<button type="button" class="list-group-item list-group-item-action">Session Name 1</button>
+						<button type="button" class="list-group-item list-group-item-action">Session Name 2</button>
+						<button type="button" class="list-group-item list-group-item-action">Session Name 3</button>
+						<button type="button" class="list-group-item list-group-item-action">Session Name 4</button>
+					</div>
+					<br>
+					<button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+				</form>
 			</div>
-			<div class="col text-center">
-				<a class="role-button" href="./studentLogin.html">
-					<button type="button" class="btn btn-primary btn-lg" id="student">Student</button>
-				</a>
-			</div>
+        </div>
+
 		</div>
 	</body>
 </html>
