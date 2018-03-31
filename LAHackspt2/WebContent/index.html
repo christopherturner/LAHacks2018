@@ -3,12 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-
+<link rel="stylesheet" type="text/css" href="CSS/index.css" />
 <title>Scryb Home</title>
+
+<script>
+	function toggle(){				
+		if(document.getElementById("body").classList.contains("light")){
+			document.getElementById("body").classList.add('dark');
+			document.getElementById("body").classList.remove('light');
+			document.getElementById("logo").src= "IMG/Logo_Dark.png";
+			document.getElementById("lightDark").innerText= "Light Mode";
+
+		}
+		else{
+			document.getElementById("body").classList.add('light');
+			document.getElementById("body").classList.remove('dark');		
+			document.getElementById("logo").src= "IMG/Logo_Light.png";
+			document.getElementById("lightDark").innerText= "Dark Mode";
+
+		}
+	}
+</script>
+
 </head>
-<body>
 
+<body class = "light" id = "body">
 
+	<button id="lightDark" onclick="toggle()" class="button">Dark Mode</button><br>
+	<img id = "logo" src = "IMG/Logo_Light.png">
+
+<audio id="player" controls></audio>
+<script>
+  	var player = document.getElementById('player');
+
+/*   var handleSuccess = function(stream) {
+    if (window.URL) {
+      player.src = window.URL.createObjectURL(stream);
+    } else {
+      player.src = stream;
+    }
+  };
+
+  navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(handleSuccess); */
+  
+
+	var handleSuccess = function(stream) {
+		var context = new AudioContext();
+		var source = context.createMediaStreamSource(stream);
+		//script node
+		var processor = context.createScriptProcessor(1024, 1, 1);
+
+		source.connect(processor);
+		processor.connect(context.destination);
+
+		//buffer is ready to be used
+		processor.onaudioprocess = function(e) {
+			// Do something with the data, i.e Convert this to WAV
+
+			console.log(e.inputBuffer);
+		};
+	};
+
+	navigator.mediaDevices.getUserMedia({
+		audio : true,
+		video : false
+	}).then(handleSuccess);
+</script>
+
+<div id = "text"></div>
+
+<a id="download">Download</a>
+<button id="stop">Stop</button>
 
 </body>
 </html>
