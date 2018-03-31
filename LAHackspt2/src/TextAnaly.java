@@ -2,6 +2,8 @@
 // Imports the Google Cloud client library
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,18 +19,18 @@ import com.google.cloud.language.v1.Sentiment;
 
 public class TextAnaly {
 
-	private List<String> keyTerms = new ArrayList<>();
+	private List<KeyNotes> keyTerms = new ArrayList<>();
 	
 	public boolean existsInList(String term) {
 		for(int i = 0; i < keyTerms.size(); i++) {
-			if (keyTerms.get(i).equals(term)) {
+			if (keyTerms.get(i).getTerm().equals(term)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public List<String> getKeyTerms(){
+	public List<KeyNotes> getKeyTerms(){
 		return keyTerms;
 	}
 	
@@ -71,20 +73,16 @@ public class TextAnaly {
 				// System.out.printf("\nEntity: %s", entity.getName());
 				// System.out.printf("\nSalience: %.3f\n", entity.getSalience());
 
-//				System.out.println("Metadata: ");
-				for (Map.Entry<String, String> entry : entity.getMetadataMap().entrySet()) {
-//					System.out.printf("%s : %s", entry.getKey(), entry.getValue());
-				}
 				for (EntityMention mention : entity.getMentionsList()) {
 					//IF PROPER
 					if(mention.getType().getNumber() == 1)
 					{	
-//						System.out.printf("Begin offset: %d\n", mention.getText().getBeginOffset());
 						String content = mention.getText().getContent();
 						System.out.println("Content: " + content);
 						System.out.println("Type: " + mention.getType());
 						if(!existsInList(content)) {
-							keyTerms.add(content);
+							KeyNotes kn = new KeyNotes(content, entity.getSalience());
+							keyTerms.add(kn);
 						}
 					}
 				}
@@ -101,14 +99,26 @@ public class TextAnaly {
 	public static void main(String... args) throws Exception {
 		// Instantiates a client
 		TextAnaly ta = new TextAnaly();
-		String text = "Now, I’m going to ask you this question. Why are you here? That is to say, why should you, we, all of us, want to study these ancient Greeks? I think it’s reasonable for people who are considering the study of a particular subject in a college course to ask why they should. What is it about? What is it about the Greeks between the years that I mentioned to you that deserves the attention of people in the twenty-first century? I think the answer is to be found, or at least one answer — the truth is there are many answers — in that they are just terribly interesting, but that’s very much of a — what’s the word I want, the opposite of objective — subjective observation by me. So I would say, a less subjective one is that I believe that it comes from their position, that is to say, the position of the Greeks are at the most significant starting point of Western Civilization, which is the culture that most powerfully shapes not only the West but most of the world today. It seems to me to be evident that whatever its other characteristics, the West has created institutions of government and law that provide unprecedented freedom for its people. It has also invented a body of natural scientific knowledge and technological achievement that together make possible a level of health and material prosperity undreamed of in earlier times, and unknown outside the West and those places that have been influenced by the West. I think the Nobel Prize laureate, V.S. Naipaul, a man born in Trinidad, of Indian parents, was right, when he spoke of the modern world as our universal civilization shaped chiefly by the West.";
-
+		String text = "The Impact of Viking Raids For these reasons, Viking became a word of terror for the people of Northern Europe, and many historians tend to treat Vikings as mere disruptions to civilization. Yet it was in this disruptive role that the Vikings had, perhaps, their most profound impact on Western civilization. The Vikings essentially turned the tide in Europe from centralized imperialism to decentralized feudalism. Viking raids began stepping up around the end of the 8th century, just as Charlemagne was trying to unite Europe into the Carolingian Empire. This centralized empire was not suitable to deal with the amphibious raids of the Vikings. Try as he might, Charlemagne could not possibly hope to defend thousands of miles of coastline from Viking invasions. Moreover, since the shallow Viking longships could travel upriver, not even the inland empire was safe, as the Vikings proved quite clearly a century later by laying siege to Paris in 885. Charlemagne's empire was so short-lived because it could not provide the most basic services an empire is supposed to provide its subjects: peace and protection. As Charlemagne's empire fell apart, Europeans needed to find a new way to protect themselves against these Viking raiders, something local and small enough to be responsive but powerful enough to protect the people and their property.";
 		ta.getSentiment(text);
 		ta.getEntity(text);
 		
+		Collections.sort(ta.getKeyTerms(), new sortSalience());
+		
 		System.out.println("KEY TERMS: ");
 		for(int i = 0; i < ta.getKeyTerms().size(); i++) {
-			System.out.println(ta.getKeyTerms().get(i));
+			System.out.println(ta.getKeyTerms().get(i).getTerm() + " " + ta.getKeyTerms().get(i).getSalience());
 		}
 	}
+}
+
+class sortSalience implements Comparator<KeyNotes>
+{
+	public int compare(KeyNotes a, KeyNotes b)
+    {
+		if (a.getSalience() > b.getSalience()) {
+			return -1;
+		}
+		return 1;
+    }
 }
