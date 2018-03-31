@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Vector;
 
 public class ServerThread extends Thread {
 		private Socket s;
 		private Server sr;
+		Lecture currLecture;
 		private ObjectOutputStream oos;
 		private ObjectInputStream ois;
+		private Vector<Lecture> lectures = new Vector<Lecture>();
 		
 		public ServerThread (Socket s, Server sr) {
 			try{
@@ -17,18 +20,11 @@ public class ServerThread extends Thread {
 				this.sr = sr;
 				oos = new ObjectOutputStream(s.getOutputStream());
 				ois = new ObjectInputStream(s.getInputStream());
-				games = sr.getGames();
-				brawlers = sr.getBrawler();
+				this.lectures = sr.getLectures();
 				this.start();
 			}catch (IOException ioe) {
 				System.out.println("ioe in ServerThread constructor: " + ioe.getMessage());
 			}
-		}
-		
-		public void updateData(Game currGame) {
-			int index = findIndex(currGame.getName());
-			games.set(index, currGame);
-			sr.setGames(games);
 		}
 		
 		public void sendMessage(Message mes)
@@ -42,15 +38,13 @@ public class ServerThread extends Thread {
 		}
 		
 		private void createLecture(String lectureName) {
-			Vector<ServerThread> lectures = new Vector<ServerThread>();
-			lectures.add(this);
-			currLecture = new Game(gameName, players);
-			//currently 1 player in it
-			currGame.setNum(1);
+			Vector<ServerThread> students = new Vector<ServerThread>();
+			students.add(this);
+			currLecture = new Lecture(lectureName, students);
 			//add to gamelist
-			games.add(currGame);
+			lectures.add(currLecture);
 			//update server
-			sr.setGames(games);
+			sr.setLectures(lectures);
 			
 		}
 		
@@ -64,7 +58,6 @@ public class ServerThread extends Thread {
 				}
 			} catch (IOException ioe){
 				System.out.println("ioe in ServerThread.run(): " + ioe.getMessage());
-				sr.removeServerThread(this);
 			} catch (ClassNotFoundException cnfe) {
 				System.out.println("cnfe: " + cnfe.getMessage());
 			}

@@ -1,6 +1,7 @@
 package WebStuff;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -8,14 +9,14 @@ import java.util.Vector;
 
 public class Server {
 	private Vector<ServerThread> students;	
-	private Vector<String> lectures = new Vector<String>();
+	private Vector<Lecture> lectures = new Vector<Lecture>();
 
 
-	public Vector<String> getLectures(){
+	public Vector<Lecture> getLectures(){
 		return lectures;
 	}
 	
-	public void setLecture(Vector<String> lectures){
+	public void setLectures(Vector<Lecture> lectures){
 		this.lectures= lectures;
 	}
 	
@@ -52,7 +53,7 @@ public class Server {
 				Socket s;
 				s = ss.accept();
 				System.out.println("Connection from " + s.getInetAddress());
-				ServerThread st = new SeverThread(s, this);
+				ServerThread st = new ServerThread(s, this);
 				students.add(st);
 								
 			} catch (IOException ioe) {
@@ -73,10 +74,6 @@ public class Server {
 		}
 	}
 	
-	public void removeServerThread(ServerThread st)
-	{
-		serverThreads.remove(st);
-	}
 
 	public static void main (String [] args) {
 		System.out.println("Please enter a valid file");
