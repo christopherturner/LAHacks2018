@@ -2,6 +2,8 @@ package Analysis;
 
 // Imports the Google Cloud client library
 import java.io.IOException;
+import java.util.List;
+
 import com.google.cloud.language.v1.AnalyzeEntitiesRequest;
 import com.google.cloud.language.v1.AnalyzeEntitiesResponse;
 import com.google.cloud.language.v1.AnalyzeSyntaxRequest;
@@ -153,8 +155,8 @@ public class TextAnaly {
 		}
 	}
 
-	public String getStringTerms() {
-		return KeyNotes.getStringTerms();
+	public List<KNote> getKeyTerms() {
+		return KeyNotes.getKeyTerms();
 	}
 	
 	public static void main(String... args) throws Exception {

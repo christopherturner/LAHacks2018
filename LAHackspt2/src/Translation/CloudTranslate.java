@@ -20,9 +20,6 @@ public class CloudTranslate {
 		         TranslateOption.sourceLanguage(inputCode),
 		         TranslateOption.targetLanguage(outputCode));
 
-		 
-		 //System.out.printf("Text: %s%n", text);
-		 //System.out.printf("Translation: %s%n", translation.getTranslatedText());
 		 return translation.getTranslatedText();
 	}
 		
