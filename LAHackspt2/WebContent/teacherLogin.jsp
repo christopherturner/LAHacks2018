@@ -12,7 +12,8 @@
 	}
 	Database database = (Database) session.getAttribute("database");
 	//get lecture list from database
-	ArrayList<Lecture> lectures = database.getLectures();
+	ArrayList<Lecture> lectures = new ArrayList<Lecture>();
+	lectures = database.getLectures();
 	
 	//make sure user input is valid
 	String lecturer = (String)request.getParameter("profName");
@@ -39,9 +40,13 @@
 	if (valid){
 		//update database
 		Lecture newLecture = new Lecture();
-		newLecture.setLecturer(lecturer);
+		newLecture.setTeacher(lecturer);
 		newLecture.setName(lectureName);
+		System.out.println("HII: "+newLecture.getName());
 		lectures.add(newLecture);
+		database.setLectures(lectures);
+		String test = database.getLectures().get(0).getName();
+		System.out.println("Test: "+test);
 		//redirect to nextPage
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(next);
 		try {

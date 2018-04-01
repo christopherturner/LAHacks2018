@@ -35,7 +35,7 @@
 				</a>
 			</div>
 			<div class="col text-center">
-				<a class="role-button" href="./studentLogin.html">
+				<a class="role-button" href="./studentLogin.jsp">
 					<button type="button" class="btn btn-primary btn-lg" id="student">Student</button>
 				</a>
 			</div>
