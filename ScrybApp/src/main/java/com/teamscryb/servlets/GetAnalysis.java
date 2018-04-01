@@ -36,7 +36,6 @@ public class GetAnalysis extends HttpServlet {
 		PrintWriter out = response.getWriter(); //send client-side code back to browser
 		
 		//send classification
-		
 		out.println("<div id = \"keyterms\" class = \"center\">");
 		out.println("<span class = \"title\">Terms from this lecture</span><br>");
 		out.println("Class category: <span class = \"italic\">" + ta.getKeyNotes().getClassification()+"<br>");
