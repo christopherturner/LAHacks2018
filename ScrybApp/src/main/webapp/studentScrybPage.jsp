@@ -180,7 +180,6 @@
 		
 		document.getElementById("textAnalysis").innerHTML = data;
 	}
-	
 	getInfo()</script>
 
 </html>
