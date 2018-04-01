@@ -51,6 +51,7 @@ public class KeyNotes {
 
 class sortSalience implements Comparator<KNote>
 {
+	@Override
 	public int compare(KNote a, KNote b)
     {
 		if (a.getSalience() > b.getSalience()) {
