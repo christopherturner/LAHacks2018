@@ -1,0 +1,102 @@
+@charset "ISO-8859-1";
+
+body { 
+	margin: 0; 
+	padding: 0; 	
+	font-family: "Raleway", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;    
+	color: white;
+	background: white;
+}
+.light{
+	color: #373737;
+	background: white;
+}
+.dark{
+	color: white;
+	background: grey;
+}
+#logo{
+	margin-top:20px;
+	position: relative;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+.italic{
+	font-style: italic;
+}
+.center{
+	margin: auto;
+    padding: 5px;
+}
+.button{
+	outline: none;
+	border: none;
+	background-color: Transparent;
+	float:right;
+}
+
+h2{
+	font-family: "Raleway", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;    
+	color: white;
+	text-align: center;
+}
+h3{
+	font-family: "Raleway", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;    
+	color: white;
+	text-align: center;
+	font-size: 15px;
+	font-style: italic;
+}
+
+.role-button a {
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.role-button a:hover {
+    background-color: #CCCCCC; /* Dark grey background on mouse-over */
+}
+
+ select {
+ 	height: auto;
+   	vertical-align: middle;
+    font-size: inherit;
+ }
+ 
+ option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+#textarea-from {
+    width: 89%;
+    height: 250px;
+    resize: none;
+    font-size: 2em;
+    padding: 5px 10px;
+    margin-left:50px;
+
+ }
+ 
+#convert-from{
+	position:relative;
+	margin-left:20px;
+	
+}
+#subtitle{
+	position:relative;
+	margin-left:80px;
+}
+
+#btn-convert-text #btn-stop-text{
+	position:relative;
+	margin-left:10px;
+	margin-right:10px;
+}
