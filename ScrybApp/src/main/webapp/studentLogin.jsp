@@ -24,7 +24,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="CSS/student.css" />
+		<link rel="stylesheet" type="text/css" href="CSS/studentLogin.css" />
 		<link rel="stylesheet" type="text/css" href="CSS/index.css" />
 		
 		<!-----CSS----->
@@ -34,6 +34,14 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="javascript/studentLogin.js"></script>
 		<title>Scryb Home</title>
+		<script>
+		
+		function goToScrybPage(name){
+			localStorage.setItem("lectureName", name);
+			return true;
+		}
+		
+		</script>
 
 	</head>
 
@@ -52,7 +60,9 @@
 						<table>
 						    <c:forEach items="${classes}" var="lec">
 						        <tr>
-						            <button type="button" class="list-group-item list-group-item-action">${lec.name}</button>
+						        
+						            <a href = "studentScrybPage.jsp" onclick="goToScrybPage(${lec.name})" class="list-group-item list-group-item-action">${lec.name}</a>
+						        
 						        </tr>
 						    </c:forEach>
 						</table>
@@ -64,9 +74,7 @@
 			</div>
         </div>
     <script>
-    	<%for(Lecture l: lectures){%>
-    		console.log(<%=l.getName()%> + " by " + <%=l.getTeacher()%>)
-    	<%}%>
+
     </script>
 	</body>
 </html>

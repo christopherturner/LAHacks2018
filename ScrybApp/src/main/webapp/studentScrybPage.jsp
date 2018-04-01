@@ -30,6 +30,13 @@
 		
 		<script src="javascript/studentScrybPage.js"></script>
 		<title>Scryb Home</title>
+		<script>
+		
+		window.onload = function() {
+			document.getElementById("lectureName").innerHTML = localStorage.getItem("lectureName");
+		}
+		
+		</script>
 	</head>
 
 	<body class = "light" id = "body">
@@ -41,7 +48,7 @@
 		</div>
 		<div class="row">
 			<div class="col text-center">
-				<label for="comment">Classroom: </label><br>
+				<label for="comment">Classroom: <div id = "lectureName"></div></label><br>
 				
 				<label for="comment">Instructor: </label>
 			</div>
