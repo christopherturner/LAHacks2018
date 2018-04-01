@@ -120,11 +120,11 @@ function Translator() {
     var recognition;
 
     function initTranscript(callback, language) {
-    	try {
-    	    var recognition = new webkitSpeechRecognition();
-    	  } catch (e) {
-    	    var recognition = Object;
-    	  }
+        if (recognition) recognition.stop();
+
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        recognition = new webkitSpeechRecognition();
 
         recognition.lang = language || 'en-US';
 
