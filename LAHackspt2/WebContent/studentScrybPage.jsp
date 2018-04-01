@@ -1,5 +1,16 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="model.*" 
+		 import="Translation.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+	if ((session.getId() == null) || (session.getAttribute("database") == null)){
+		session.setAttribute("database", Database.getInstance());
+	}
+	Database database = (Database) session.getAttribute("database");
+	// int lectureID = (int) session.getAttribute("lectureId");
+%>
 	<head>
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -20,7 +31,11 @@
 	</head>
 
 	<body class = "light" id = "body">
+<<<<<<< Updated upstream:LAHackspt2/WebContent/studentScrybPage.html
 			
+=======
+		
+>>>>>>> Stashed changes:LAHackspt2/WebContent/studentScrybPage.jsp
 		<div class="row">
 			<div class="col">
 				<img id="logo" src="IMG/Logo_Light.png">
@@ -32,7 +47,13 @@
 				<div class="form-group text-center">
 					<label for="comment">Original transcript</label><br>
 					<label for="comment">Language: English</label>
-					<textarea class="form-control" id="orignal-textbox">Hello</textarea>
+					<textarea readonly class="form-control" id="orignal-textbox">
+					<%
+					Lecture l = database.getLecture(1);
+					for (Text t: l.getTranscript()) { %>
+						<%=t.getText()%>
+					<% } %> 
+					</textarea>
 				</div>
 			</div>
 			<div class="col">
@@ -43,10 +64,19 @@
 						<label><input type="radio" name="optradio"> Mandarin</label>
 						<label><input type="radio" name="optradio"> Spanish</label>
 					</div>
-					<textarea class="form-control" id="translated-text-textbox">Hello</textarea>
+					<textarea class="form-control" id="translated-text-textbox">
+					<%
+					for (Text t: l.getTranscript()) { 
+						String text = t.getText();
+						String translatedText = CloudTranslate.translateText(text, "fr", "en");
+					%>
+						<%=translatedText%>
+					<% } %> 
+					</textarea>
 				</div>
 			</div>
 		</div>
+<<<<<<< Updated upstream:LAHackspt2/WebContent/studentScrybPage.html
 			<div id = "textAnalysis"></div>
 		
 			<script type="text/javascript">
@@ -68,5 +98,28 @@
 			getInfo()
 			</script>
 		
+=======
+>>>>>>> Stashed changes:LAHackspt2/WebContent/studentScrybPage.jsp
 	</body>
+	<script type="text/javascript">
+	
+	function getXmlHttpRequestObject() {
+		 if (window.XMLHttpRequest) {
+			 return new XMLHttpRequest();
+		 } else if (window.ActiveXObject) {
+			 return new ActiveXObject("Microsoft.XMLHTTP");
+		 } else {
+			 alert("Your Browser does not support AJAX!\nIt's about time to upgrade don't you think?");
+		 }
+	 }
+	 
+	//XmlHttpRequest object
+	 var req = getXmlHttpRequestObject(); 
+	 
+	ogText = document.getElementById("orignal-textbox");
+	transText = document.getElementById("translated-text-textbox");
+	
+	
+	
+	</script>
 </html>
