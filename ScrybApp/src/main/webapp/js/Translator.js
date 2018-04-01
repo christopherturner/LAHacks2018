@@ -124,7 +124,7 @@ function Translator() {
 
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        recognition = new SpeechRecognition();
+        recognition = new webkitSpeechRecognition();
 
         recognition.lang = language || 'en-US';
 
