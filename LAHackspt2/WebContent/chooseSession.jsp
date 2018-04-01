@@ -9,6 +9,7 @@
 <html>
 
 <head>
+
 	<script>
 		function toggle(){				
 			if(document.getElementById("body").classList.contains("light")){
