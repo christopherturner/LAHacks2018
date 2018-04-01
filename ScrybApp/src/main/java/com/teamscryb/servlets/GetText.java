@@ -37,24 +37,29 @@ public class GetText extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	Database database = Database.getInstance();
-    	
-		int lectureIndex = Integer.parseInt(request.getParameter("lecture-index"));
-		int textIndex = Integer.parseInt(request.getParameter("text-index"));
+    	String buffer = "";
+		String lectureName = request.getParameter("lectureName");
+		int textIndex = Integer.parseInt(request.getParameter("textIndex"));
+		
+		
+		if (textIndex >= database.getLecture(lectureName).getSize())
 		
 		PrintWriter out = response.getWriter();
-		out.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		out.append("<o-text>");
-		out.append(database.getLecture(lectureIndex).getText(textIndex).getText());
-		out.append("</o-text>");
+		buffer += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+		buffer += "<o-text>";
+		buffer += (database.getLecture(lectureName).getText(textIndex).getText());
+		buffer += "</o-text>";
 		
 		
-		String originalLanguage = request.getParameter("o-lang");
-		String translateLanguage = request.getParameter("t-lang");
+		String originalLanguage = request.getParameter("oLang");
+		String translateLanguage = request.getParameter("tLang");
 		
-		out.append("<t-text>");
-		out.write(CloudTranslate.translateText(database.getLecture(lectureIndex).getText(textIndex).getText(),
+		buffer += "<t-text>";
+		buffer += (CloudTranslate.translateText(database.getLecture(lectureIndex).getText(textIndex).getText(),
 				originalLanguage, translateLanguage));
-		out.append("</t-text>");
+		buffer += "</t-text>";
+		
+		out.println(buffer);
 		
 		
 	}
