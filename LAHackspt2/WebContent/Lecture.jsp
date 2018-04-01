@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.*" %>
+<%@page import="java.util.*" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+	if ((session.getId() == null) || (session.getAttribute("database") == null)){
+		session.setAttribute("database", Database.getInstance());
+	}
+	Database database = (Database) session.getAttribute("database");
+	//get lecture list from database
+	ArrayList<Lecture> lectures = database.getLectures();
+	String title = " " + (String) session.getAttribute("lectureName");
+	String name = " " + (String) session.getAttribute("profName");
+%>
 <head>
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -23,7 +36,12 @@
 				<img id="logo" src="IMG/Logo_Light.png">
 			</div>
 		</div>
+		<div id = "subtitle">
+		<label id="prof">Professor:  <%=name%></label> <br>
+		<label id="title">Lecture Name:  <%=title%></label>		
+		<br>
 		<label id="lang">Specify the Language: </label>
+		
 		<select id="convert-from">
 		<option value="en">English (en)</option>
 		<option value="zh">Chinese (Simplified) (zh)</option>
@@ -36,7 +54,7 @@
 		<option value="es">Spanish (es)</option>
 		</select>
 		<button id="btn-convert-text" class="btn btn-primary">Start</button>
-		
+		</div>
         <br>
       	<br>
       	

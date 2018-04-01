@@ -12,8 +12,7 @@
 	}
 	Database database = (Database) session.getAttribute("database");
 	//get lecture list from database
-	ArrayList<Lecture> lectures = new ArrayList<Lecture>();
-	lectures = database.getLectures();
+	ArrayList<Lecture> lectures = database.getLectures();
 	
 	//make sure user input is valid
 	String lecturer = (String)request.getParameter("profName");
