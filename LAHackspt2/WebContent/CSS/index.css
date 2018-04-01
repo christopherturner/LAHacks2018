@@ -46,3 +46,14 @@ h3{
 	font-size: 15px;
 	font-style: italic;
 }
+
+.role-button a {
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.role-button a:hover {
+    background-color: #CCCCCC; /* Dark grey background on mouse-over */
+}
