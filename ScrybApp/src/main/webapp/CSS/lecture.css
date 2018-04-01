@@ -85,6 +85,16 @@ h3{
 
  }
  
+ #textarea-to {
+    width: 89%;
+    height: 250px;
+    resize: none;
+    font-size: 2em;
+    padding: 5px 10px;
+    margin-left:50px;
+
+ }
+ 
 #convert-from{
 	position:relative;
 	margin-left:20px;

@@ -141,7 +141,7 @@
 					<option>sw (Kiswahili)</option>
 					<option>cy (Cymraeg)</option>
 				</select> <br> <br>
-				<textarea id="textarea-from"></textarea>
+        <textarea id="textarea-to"></textarea>
 				<br>
 				<button id="btn-convert-text" style="font-size: 16px;">Convert
 					Your Text Input</button>
@@ -149,56 +149,6 @@
 				<button id="btn-convert-voice" style="font-size: 16px;">Speak
 					& Convert Your Voice</button>
 			</section>
-
-			<section class="section-divider">
-				<h2>Convert Into</h2>
-				<br> <br> <select id="convert-into">
-					<option>en (English)</option>
-					<option>ar (العربية)</option>
-					<option>de (Deutsch)</option>
-					<option>fr (Français)</option>
-					<option>hi (हिंदी)</option>
-					<option>pt (Português)</option>
-					<option>ru (Русский)</option>
-					<option>es (Español)</option>
-					<option>tr (Türk)</option>
-					<option>nl (Nederlands)</option>
-					<option>it (Italiano)</option>
-					<option>pl (Polski)</option>
-					<option>ro (Român)</option>
-					<option>sv (Svensk)</option>
-					<option>vi (Việt)</option>
-					<option>th (ภาษาไทย)</option>
-					<option>zh-CN (中文简体)</option>
-					<option>zh-TW (中國傳統)</option>
-					<option>ko (한국의)</option>
-					<option>ja (日本人)</option>
-					<option>el (ελληνικά)</option>
-					<option>ts (தமிழ்)</option>
-					<option>hy (հայերեն)</option>
-					<option>bs (Bosanski)</option>
-					<option>ca (Català)</option>
-					<option>hr (Hrvatski)</option>
-					<option>dq (Dansk)</option>
-					<option>eo (Esperanto)</option>
-					<option>fi (Suomalainen)</option>
-					<option>ht (Haian kreyòl)</option>
-					<option>hu (Magyar)</option>
-					<option>is (Icelandic)</option>
-					<option>id (Indonesia)</option>
-					<option>la (Latinum)</option>
-					<option>lv (Latvijas)</option>
-					<option>mk (Македонски)</option>
-					<option>no (Norsk)</option>
-					<option>sr (Српски)</option>
-					<option>sk (Slovenský)</option>
-					<option>sw (Kiswahili)</option>
-					<option>cy (Cymraeg)</option>
-				</select> <br> <br>
-				<textarea id="textarea-to" disabled
-					style="background: #f9f9f9 !important; border: 1px solid #f7f1f1; cursor: not-allowed;"
-					title="Output! ReadOnly!"></textarea>
-
 
 	</body>
 	<script src="js/Translator.js">
