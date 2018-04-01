@@ -23,8 +23,13 @@ public class Database {
 		return instance;
 	}
 
-	public Lecture getLecture(int index) {
-		return lectures.get(index);
+	public Lecture getLecture(String name) {
+		for (Lecture l: lectures) {
+			if (name == l.getName()) {
+				return l;
+			}
+		}
+		return new Lecture();
 	}
 	
 	public ArrayList<Lecture> getLectures() {

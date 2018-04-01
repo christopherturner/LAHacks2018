@@ -9,7 +9,9 @@
 		session.setAttribute("database", Database.getInstance());
 	}
 	Database database = (Database) session.getAttribute("database");
-	String lectureID = (String) session.getAttribute("lectureId");
+	String lectureName = (String) session.getAttribute("lectureId");
+	Lecture l = database.getLecture(lectureName);
+	int sessionTextIndex = 0; 
 %>
 	<head>
 		<meta charset="UTF-8">
@@ -44,9 +46,9 @@
 					<label for="comment">Language: English</label>
 					<textarea readonly class="form-control" id="orignal-textbox">
 					<%
-					Lecture l = database.getLecture(1);
 					for (Text t: l.getTranscript()) { %>
 						<%=t.getText()%>
+						<% sessionTextIndex++; %>
 					<% } %> 
 					</textarea>
 				</div>
@@ -55,11 +57,13 @@
 				<div class="form-group text-center">
 					<label for="comment">Translated transcript</label><br>
 					<div class="radio">
-						<label><input type="radio" name="optradio"> German</label>
-						<label><input type="radio" name="optradio"> Mandarin</label>
-						<label><input type="radio" name="optradio"> Spanish</label>
+						<form id="radioForm">
+							<label><input type="radio" name="optradio" checked="checked" value="sp"> Spanish</label>
+							<label><input type="radio" name="optradio" value="de"> German</label>
+							<label><input type="radio" name="optradio" value="ch"> Mandarin</label>
+						</form>
 					</div>
-					<textarea class="form-control" id="translated-text-textbox">
+					<textarea class="form-control" id="translated-textbox">
 					<%
 					for (Text t: l.getTranscript()) { 
 						String text = t.getText();
@@ -71,62 +75,33 @@
 				</div>
 			</div>
 		</div>
+		<form id="hiddenForm">
+			<input type="hidden" id="sessionTextIndex" value=<%=sessionTextIndex%>>
+			<input type="hidden" id="lectureName" value=<%=l.getName()%>>
+		</form>
 	</body>
 	<script type="text/javascript">
 	
-	function getXmlHttpRequestObject() {
-		 if (window.XMLHttpRequest) {
-			 return new XMLHttpRequest();
-		 } else if (window.ActiveXObject) {
-			 return new ActiveXObject("Microsoft.XMLHTTP");
-		 } else {
-			 alert("Your Browser does not support AJAX!\nIt's about time to upgrade don't you think?");
-		 }
-	 }
-	 
-	 
-	//XmlHttpRequest object
-	 var req = getXmlHttpRequestObject(); 
-	
-	 function getRequest(resource) {
-		 	
-			// handle the case where a querystring is not detected
-			var char = "&";
-		 	if(resource.indexOf("?", 0) == -1) {
-				char = "?";
-			}
-				
-			 if (req.readyState == 4 || req.readyState == 0) {
-				 req.open("GET", resource + char + 'ms=' + new Date().getTime(), true);
-				 req.onreadystatechange = handleResponse();
-				 req.send(null);
-				 return false;
-			 }
-		 }
-	 
-	 function handleResponse() {
-		 if (req.readyState == 4) 
-		 {
-			parseState(req.responseXML);
-		 }
-	} 
-
-	function parseState(xDoc){
-		if(xDoc == null)
-			return
+	function getText(){
+		var req = new XMLHttpRequest();
+		req.open("GET", "GetText?lectureName=" + document.getElementById("lectureName").value
+				+ "textIndex=" + document.getElementById("sessionTextIndex").value
+				+ "tLang=" + document.radioForm.optradio.value;
+				, false);
+		req.send();
+		if(req.responseText.trim().length > 0){
+			data = req.responseText.trim();
 			
-		//Reference the <div> tag with the ID "text"; <div id="text">XML</div>	
-		
-		var target = document.getElementById("text");
-		
-		
-		//Get the value of the xml node named <text> and place the value in <div id="text">here</div>
-		target.innerHTML += xDoc.getElementsByTagName("text")[0].childNodes[0].nodeValue;
+			document.getElementById("orignal-textbox").innerHTML = data;
+			document.getElementById("translated-textbox").innerHTML = data;
+			setTimeout(getText(), 1000);
+		}
+		setTimeout(getText(), 1000);
 	}
-
-	setInterval(getRequest('GetText'), 1000);
-	//ogText = document.getElementById("orignal-textbox");
-	//transText = document.getElementById("translated-text-textbox");
+	getText();
+	
+	
+	
 	
 	
 	
