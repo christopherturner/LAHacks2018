@@ -7,6 +7,10 @@ import Translation.CloudTranslate;
 public class Lecture {
 	private ArrayList<Text> transcript;
 	private int size;
+	
+	public Lecture() {
+		transcript = new ArrayList<Text>();
+	}
 
 	public Text getText(int pos) {
 		return transcript.get(pos);
@@ -24,5 +28,9 @@ public class Lecture {
 
 	public int getSize() {
 		return this.size;
+	}
+	
+	public ArrayList<Text> getTranscript() {
+		return transcript;
 	}
 }
