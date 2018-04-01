@@ -5,17 +5,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%
-	if ((session.getId() == null) || (session.getAttribute("database") == null)){
-		session.setAttribute("database", Database.getInstance());
-	}
-	Database database = (Database) session.getAttribute("database");
-	//get lecture list from database
-	ArrayList<Lecture> lectures = new ArrayList<Lecture>();
-	lectures = database.getLectures();
-	String title = " " + (String) session.getAttribute("lectureName");
-	String name = " " + (String) session.getAttribute("profName");
-%>
+
 <head>
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -27,7 +17,14 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="cover.js"></script>
 		<title>Lecture</title>
+		
+		<script>
+	window.onload = function() {
+		document.getElementById("teach").innerHTML = localStorage.getItem("teach");
+		document.getElementById("lecture").innerHTML = localStorage.getItem("lecture");
+	}
 
+</script>
 	</head>
 
 	<body class = "light" id = "body">
@@ -37,8 +34,8 @@
 			</div>
 		</div>
 		<div id = "subtitle">
-		<label id="prof">Professor:  <%=name%></label> <br>
-		<label id="title">Lecture Name:  <%=title%></label>		
+		<label id="prof">Professor:  <div id = "teach"> </div></label> <br>
+		<label id="title">Lecture Name:  <div id = "lecture"> </div></label>		
 		<br>
 		<label id="lang">Specify the Language: </label>
 		

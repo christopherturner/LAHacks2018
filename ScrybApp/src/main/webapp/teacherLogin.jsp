@@ -45,8 +45,10 @@
 		System.out.println("HII: "+newLecture.getName());
 		lectures.add(newLecture);
 		database.setLectures(lectures);
-		String test = database.getLectures().get(0).getName();
-		System.out.println("Test: "+test);
+		for(int i = 0; i < database.getLectures().size(); i++){
+			System.out.println("Test: "+ i + database.getLectures().get(i).getName());
+		}
+
 		//redirect to nextPage
 		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(next);
 		try {
@@ -74,7 +76,14 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="javascript/studentLogin.js"></script>
 		<title>Scryb Home</title>
+<script>
 
+function getTeacher(){
+	localStorage.setItem("teach", document.FORM.profName.value);
+	localStorage.setItem("lecture", document.FORM.lectureName.value);
+}
+
+</script>
 	</head>
 
 	<body class = "light" id = "body">
@@ -83,13 +92,13 @@
 				<img id="logo" src="IMG/Logo_Light.png">
 			</div>
 		</div>
-			<form class="form-signin" action= "teacherLogin.jsp">
+			<form name="FORM" action= "teacherLogin.jsp" onSubmit = "return getTeacher();">
 					<h2 class="form-signin-heading"></h2>
 					 <div class="form-group">	
 					 	<label for="profName">Professor's Name</label>
-    					<input type="profName" name = "profName"class="form-control" id="profID" aria-describedby="profHelp" placeholder="Enter Your Name" required>				 
+    					<input name = "profName" id = "profName" type = "text" class="form-control" value ="${param.profName!=null? param.profName : ''}"aria-describedby="profHelp" placeholder="Enter Your Name" required>				 
     					<label for="lectureName">Lecture Title</label>
-    					<input type="lectureName" name = "lectureName"class="form-control" id="lectureID" aria-describedby="lectureHelp" placeholder="Enter Lecture Title" required>
+    					<input name = "lectureName" id = "lectureName" type = "text" class="form-control" value ="${param.lectureName!=null? param.lectureName : ''}"aria-describedby="lectureHelp" placeholder="Enter Lecture Title" required>
  					 	<br> 		
  					 	 <button type="submit" name = "submit" class="btn btn-primary" value = "run">Start</button>
  					 		 	 					 	

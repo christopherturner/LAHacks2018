@@ -12,6 +12,9 @@
 	Database database = (Database) session.getAttribute("database");
 	//get lecture list from database
 	ArrayList<Lecture> lectures = database.getLectures();
+	for(int i = 0; i < database.getLectures().size(); i++){
+		System.out.println("WOAT: "+ i + database.getLectures().get(i).getName());
+	}
 	//set lectureId into session attribute
 	
 %>

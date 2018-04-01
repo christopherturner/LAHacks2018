@@ -6,14 +6,8 @@ public class Database {
 	private static Database instance;
 	private ArrayList<Lecture> lectures;
 
-	private Database() {
+	public Database() {
 		lectures = new ArrayList<Lecture>();
-		Lecture testLecture = new Lecture();
-		testLecture.addText("Hello!", "en");
-		lectures.add(testLecture);
-		testLecture = new Lecture();
-		testLecture.addText("Bonjour!", "fr");
-		lectures.add(testLecture);
 	}
 
 	public static Database getInstance() {
@@ -34,6 +28,10 @@ public class Database {
 	
 	public ArrayList<Lecture> getLectures() {
 		return lectures;
+	}
+	
+	public void addLecture(Lecture L) {
+		lectures.add(L);
 	}
 	
 	public void setLectures(ArrayList<Lecture> lectures) {
