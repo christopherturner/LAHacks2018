@@ -91,10 +91,13 @@
 		req.send();
 		if(req.responseText.trim().length > 0){
 			data = req.responseText.trim();
-			
-			document.getElementById("orignal-textbox").innerHTML = data;
-			document.getElementById("translated-textbox").innerHTML = data;
-			setTimeout(getText(), 1000);
+			parser = new DOMParser();
+			xmlDoc = parser.parseFromString(data,"text/xml");
+
+			document.getElementById("orignal-textbox").innerHTML += 
+				xmlDoc.getElementsByTagName("oText")[0].childNodes[0].nodeValue;
+			document.getElementById("translated-textbox").innerHTML += 
+				xmlDoc.getElementsByTagName("tText")[0].childNodes[0].nodeValue;
 		}
 		setTimeout(getText(), 1000);
 	}
