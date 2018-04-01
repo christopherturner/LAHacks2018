@@ -95,7 +95,8 @@ h3{
 	margin-left:80px;
 }
 
-#btn-convert-text{
+#btn-convert-text #btn-stop-text{
 	position:relative;
 	margin-left:10px;
+	margin-right:10px;
 }

@@ -43,17 +43,51 @@
 		<label id="lang">Specify the Language: </label>
 		
 		<select id="convert-from">
-		<option value="en">English (en)</option>
-		<option value="zh">Chinese (Simplified) (zh)</option>
-		<option value="zh-TW">Chinese (Traditional) (zh-TW)</option>
-		<option value="fr">French (fr)</option>
-		<option value="ja">Japanese (ja)</option>
-		<option value="ko">Korean (ko)</option>
-		<option value="de">German (de)</option>
-		<option value="it">Italian (it)</option>
-		<option value="es">Spanish (es)</option>
+		<option>en (English)</option>
+					<option>ar (العربية)</option>
+					<option>de (Deutsch)</option>
+					<option>fr (Français)</option>
+					<option>hi (हिंदी)</option>
+					<option>pt (Português)</option>
+					<option>ru (Русский)</option>
+					<option>es (Español)</option>
+					<option>tr (Türk)</option>
+					<option>nl (Nederlands)</option>
+					<option>it (Italiano)</option>
+					<option>pl (Polski)</option>
+					<option>ro (Român)</option>
+					<option>sv (Svensk)</option>
+					<option>vi (Việt)</option>
+					<option>th (ภาษาไทย)</option>
+					<option>zh-CN (中文简体)</option>
+					<option>zh-TW (中國傳統)</option>
+					<option>ko (한국의)</option>
+					<option>ja (日本人)</option>
+					<option>el (ελληνικά)</option>
+					<option>ts (தமிழ்)</option>
+					<option>hy (հայերեն)</option>
+					<option>bs (Bosanski)</option>
+					<option>ca (Català)</option>
+					<option>hr (Hrvatski)</option>
+					<option>dq (Dansk)</option>
+					<option>eo (Esperanto)</option>
+					<option>fi (Suomalainen)</option>
+					<option>ht (Haian kreyòl)</option>
+					<option>hu (Magyar)</option>
+					<option>is (Icelandic)</option>
+					<option>id (Indonesia)</option>
+					<option>la (Latinum)</option>
+					<option>lv (Latvijas)</option>
+					<option>mk (Македонски)</option>
+					<option>no (Norsk)</option>
+					<option>sr (Српски)</option>
+					<option>sk (Slovenský)</option>
+					<option>sw (Kiswahili)</option>
+					<option>cy (Cymraeg)</option>
 		</select>
 		<button id="btn-convert-text" class="btn btn-primary">Start</button>
+		<button id="btn-stop-text" class="btn btn-primary">Stop</button>
+		
 		</div>
         <br>
       	<br>
