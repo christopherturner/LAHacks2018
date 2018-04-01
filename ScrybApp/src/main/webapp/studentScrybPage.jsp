@@ -15,13 +15,13 @@
 %>
 	<head>
 		<meta charset="UTF-8">
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="CSS/studentScrybPage.css" />
 		
 		<!-----CSS----->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="CSS/index.css">
-
+		<link rel="stylesheet" type="text/css" href="CSS/studentScrybPage.css" />
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		
 		<!-----Scripts----->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		
@@ -33,18 +33,77 @@
 	</head>
 
 	<body class = "light" id = "body">
+		
 		<div class="row">
 			<div class="col">
 				<img id="logo" src="IMG/Logo_Light.png">
 			</div>
 		</div>
-
 		<div class="row">
-			<div class="col">
+			<div class="col text-center">
+				<label for="comment">Classroom: </label><br>
+				
+				<label for="comment">Instructor: </label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<label for="comment">Original transcript</label><br>
+				<label for="comment">Language: English</label>
+			</div>
+			<div class="col text-center">
+				<label for="comment">Translated transcript</label><br>
+				<form id="langForm">
+					<select id="translateLanguageWheel" name="langList" class="selectpicker">
+						<option value="en">en (English)</option>
+						<option value="ar">ar (Ø§ÙØ¹Ø±Ø¨ÙØ©)</option>
+						<option value="de">de (Deutsch)</option>
+						<option value="fr">fr (FranÃ§ais)</option>
+						<option value="hi">hi (à¤¹à¤¿à¤à¤¦à¥)</option>
+						<option value="pt">pt (PortuguÃªs)</option>
+						<option value="ru">ru (Ð ÑÑÑÐºÐ¸Ð¹)</option>
+						<option value="es">es (EspaÃ±ol)</option>
+						<option value="tr">tr (TÃ¼rk)</option>
+						<option value="nl">nl (Nederlands)</option>
+						<option value="it">it (Italiano)</option>
+						<option value="pl">pl (Polski)</option>
+						<option value="ro">ro (RomÃ¢n)</option>
+						<option value="sv">sv (Svensk)</option>
+						<option value="vi">vi (Viá»t)</option>
+						<option value="th">th (à¸ à¸²à¸©à¸²à¹à¸à¸¢)</option>
+						<option value="zh-CN">zh-CN (ä¸­æç®ä½)</option>
+						<option value="zh-TW">zh-TW (ä¸­åå³çµ±)</option>
+						<option value="ko">ko (íêµ­ì)</option>
+						<option value="ja">ja (æ¥æ¬äºº)</option>
+						<option value="el">el (ÎµÎ»Î»Î·Î½Î¹ÎºÎ¬)</option>
+						<option value="ts">ts (à®¤à®®à®¿à®´à¯)</option>
+						<option value="hv">hy (Õ°Õ¡ÕµÕ¥ÖÕ¥Õ¶)</option>
+						<option value="bs">bs (Bosanski)</option>
+						<option value="ca">ca (CatalÃ )</option>
+						<option value="hr">hr (Hrvatski)</option>
+						<option value="da">dq (Dansk)</option>
+						<option value="eo">eo (Esperanto)</option>
+						<option value="fi">fi (Suomalainen)</option>
+						<option value="ht">ht (Haian kreyÃ²l)</option>
+						<option value="hu">hu (Magyar)</option>
+						<option value="is">is (Icelandic)</option>
+						<option value="id">id (Indonesia)</option>
+						<option value="la">la (Latinum)</option>
+						<option value="lv">lv (Latvijas)</option>
+						<option value="mk">mk (ÐÐ°ÐºÐµÐ´Ð¾Ð½ÑÐºÐ¸)</option>
+						<option value="no">no (Norsk)</option>
+						<option value="sr">sr (Ð¡ÑÐ¿ÑÐºÐ¸)</option>
+						<option value="sk">sk (SlovenskÃ½)</option>
+						<option value="sw">sw (Kiswahili)</option>
+						<option value="cy">cy (Cymraeg)</option>
+					</select>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col ml-4 ">
 				<div class="form-group text-center">
-					<label for="comment">Original transcript</label><br>
-					<label for="comment">Language: English</label>
-					<textarea readonly class="form-control" id="orignal-textbox">
+					<textarea readonly class="form-control" rows="10" id="orignal-textbox">
 					<%
 					for (Text t: l.getTranscript()) { %>
 						<%=t.getText()%>
@@ -53,61 +112,13 @@
 					</textarea>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col mr-4">
 				<div class="form-group text-center">
-					<label for="comment">Translated transcript</label><br>
-					<div class="radio">
-						<form id="langForm">
-							<select id="translateLanguageWheel" name="langList" class="selectpicker">
-								<option value="en">en (English)</option>
-								<option value="ar">ar (Ø§ÙØ¹Ø±Ø¨ÙØ©)</option>
-								<option value="de">de (Deutsch)</option>
-								<option value="fr">fr (FranÃ§ais)</option>
-								<option value="hi">hi (à¤¹à¤¿à¤à¤¦à¥)</option>
-								<option value="pt">pt (PortuguÃªs)</option>
-								<option value="ru">ru (Ð ÑÑÑÐºÐ¸Ð¹)</option>
-								<option value="es">es (EspaÃ±ol)</option>
-								<option value="tr">tr (TÃ¼rk)</option>
-								<option value="nl">nl (Nederlands)</option>
-								<option value="it">it (Italiano)</option>
-								<option value="pl">pl (Polski)</option>
-								<option value="ro">ro (RomÃ¢n)</option>
-								<option value="sv">sv (Svensk)</option>
-								<option value="vi">vi (Viá»t)</option>
-								<option value="th">th (à¸ à¸²à¸©à¸²à¹à¸à¸¢)</option>
-								<option value="zh-CN">zh-CN (ä¸­æç®ä½)</option>
-								<option value="zh-TW">zh-TW (ä¸­åå³çµ±)</option>
-								<option value="ko">ko (íêµ­ì)</option>
-								<option value="ja">ja (æ¥æ¬äºº)</option>
-								<option value="el">el (ÎµÎ»Î»Î·Î½Î¹ÎºÎ¬)</option>
-								<option value="ts">ts (à®¤à®®à®¿à®´à¯)</option>
-								<option value="hv">hy (Õ°Õ¡ÕµÕ¥ÖÕ¥Õ¶)</option>
-								<option value="bs">bs (Bosanski)</option>
-								<option value="ca">ca (CatalÃ )</option>
-								<option value="hr">hr (Hrvatski)</option>
-								<option value="da">dq (Dansk)</option>
-								<option value="eo">eo (Esperanto)</option>
-								<option value="fi">fi (Suomalainen)</option>
-								<option value="ht">ht (Haian kreyÃ²l)</option>
-								<option value="hu">hu (Magyar)</option>
-								<option value="is">is (Icelandic)</option>
-								<option value="id">id (Indonesia)</option>
-								<option value="la">la (Latinum)</option>
-								<option value="lv">lv (Latvijas)</option>
-								<option value="mk">mk (ÐÐ°ÐºÐµÐ´Ð¾Ð½ÑÐºÐ¸)</option>
-								<option value="no">no (Norsk)</option>
-								<option value="sr">sr (Ð¡ÑÐ¿ÑÐºÐ¸)</option>
-								<option value="sk">sk (SlovenskÃ½)</option>
-								<option value="sw">sw (Kiswahili)</option>
-								<option value="cy">cy (Cymraeg)</option>
-							</select>
-						</form>
-					</div>
-					<textarea class="form-control" id="translated-textbox">
+					<textarea readonly class="form-control" rows="10" id="translated-textbox">
 					<%
 					for (Text t: l.getTranscript()) { 
 						String text = t.getText();
-						String translatedText = CloudTranslate.translateText(text, "fr", "en");
+						String translatedText = CloudTranslate.translateText(text, "en", "fr");
 					%>
 						<%=translatedText%>
 					<% } %> 
