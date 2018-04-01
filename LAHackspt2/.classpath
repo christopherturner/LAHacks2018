@@ -111,6 +111,8 @@
 	<classpathentry kind="lib" path="jar_files/N_Ljar_files/protobuf-java-3.5.1.jar"/>
 	<classpathentry kind="lib" path="jar_files/N_Ljar_files/protobuf-java-util-3.5.1.jar"/>
 	<classpathentry kind="lib" path="jar_files/N_Ljar_files/threetenbp-1.3.3.jar"/>
+	<classpathentry kind="lib" path="jar_files/servletJars/javax.servlet-api-4.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

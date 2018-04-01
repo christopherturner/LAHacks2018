@@ -1,3 +1,4 @@
+package Analysis;
 public class KNote {
 	private String term;
 	private float salience;
