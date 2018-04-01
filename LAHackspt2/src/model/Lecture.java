@@ -6,6 +6,8 @@ import Translation.CloudTranslate;
 
 public class Lecture {
 	private ArrayList<Text> transcript;
+	private String lecturer;
+	private String name;
 	private int size;
 	
 	public Lecture() {
@@ -32,5 +34,21 @@ public class Lecture {
 	
 	public ArrayList<Text> getTranscript() {
 		return transcript;
+	}
+	
+	public String getLecturer() {
+		return lecturer;
+	}
+	
+	public void setLecturer(String lecturer) {
+		this.lecturer = lecturer;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 }

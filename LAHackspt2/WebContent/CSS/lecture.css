@@ -16,11 +16,12 @@ body {
 	background: grey;
 }
 #logo{
+	margin-top:20px;
 	position: relative;
 	display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 10%;
 }
 .italic{
 	font-style: italic;
