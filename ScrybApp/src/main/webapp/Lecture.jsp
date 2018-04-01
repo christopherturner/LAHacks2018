@@ -98,7 +98,7 @@
         
         <section class="section-divider">
 				<h2>Convert From</h2>
-				<br> <br> <select id="convert-to">
+				<br> <br> <select id="convert-into">
 					<option>en (English)</option>
 					<option>ar (العربية)</option>
 					<option>de (Deutsch)</option>
