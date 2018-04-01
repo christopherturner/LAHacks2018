@@ -246,6 +246,7 @@ function Translator() {
             speakWorker.postMessage({ text: text, args: _args });
         }
     };
+
     
     var Google_Translate_API_KEY = 'AIzaSyDxjqfMtMuDoGQQ6fB-UWFVzC_jqa9TytU';
 }
