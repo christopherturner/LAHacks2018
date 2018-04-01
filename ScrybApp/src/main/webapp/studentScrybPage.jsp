@@ -9,7 +9,7 @@
 		session.setAttribute("database", Database.getInstance());
 	}
 	Database database = (Database) session.getAttribute("database");
-	// int lectureID = (int) session.getAttribute("lectureId");
+	String lectureID = (String) session.getAttribute("lectureId");
 %>
 	<head>
 		<meta charset="UTF-8">
@@ -31,11 +31,6 @@
 	</head>
 
 	<body class = "light" id = "body">
-<<<<<<< Updated upstream:LAHackspt2/WebContent/studentScrybPage.html
-			
-=======
-		
->>>>>>> Stashed changes:LAHackspt2/WebContent/studentScrybPage.jsp
 		<div class="row">
 			<div class="col">
 				<img id="logo" src="IMG/Logo_Light.png">
@@ -76,30 +71,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< Updated upstream:LAHackspt2/WebContent/studentScrybPage.html
-			<div id = "textAnalysis"></div>
-		
-			<script type="text/javascript">
-			function getInfo(){
-				var xhttp = new XMLHttpRequest();
-				//there is also "POST"
-				var text = "The Impact of Viking Raids For these reasons, Viking became a word of terror for the people of Northern Europe, and many historians tend to treat Vikings as mere disruptions to civilization. Yet it was in this disruptive role that the Vikings had, perhaps, their most profound impact on Western civilization. The Vikings essentially turned the tide in Europe from centralized imperialism to decentralized feudalism. Viking raids began stepping up around the end of the 8th century, just as Charlemagne was trying to unite Europe into the Carolingian Empire. This centralized empire was not suitable to deal with the amphibious raids of the Vikings. Try as he might, Charlemagne could not possibly hope to defend thousands of miles of coastline from Viking invasions. Moreover, since the shallow Viking longships could travel upriver, not even the inland empire was safe, as the Vikings proved quite clearly a century later by laying siege to Paris in 885. Charlemagne's empire was so short-lived because it could not provide the most basic services an empire is supposed to provide its subjects: peace and protection. As Charlemagne's empire fell apart, Europeans needed to find a new way to protect themselves against these Viking raiders, something local and small enough to be responsive but powerful enough to protect the people and their property.";
-		
-				xhttp.open("GET", "GetAnalysis?text=" + text, false); //synchronous call
-				xhttp.send();
-				//responseText is what the servlet sends back
-				if(xhttp.responseText.trim().length > 0){
-					data = xhttp.responseText.trim();
-				}
-				
-				document.getElementById("textAnalysis").innerHTML = data;
-			}
-			
-			getInfo()
-			</script>
-		
-=======
->>>>>>> Stashed changes:LAHackspt2/WebContent/studentScrybPage.jsp
 	</body>
 	<script type="text/javascript">
 	
@@ -113,11 +84,49 @@
 		 }
 	 }
 	 
+	 
 	//XmlHttpRequest object
 	 var req = getXmlHttpRequestObject(); 
+	
+	 function getRequest(resource) {
+		 	
+			// handle the case where a querystring is not detected
+			var char = "&";
+		 	if(resource.indexOf("?", 0) == -1) {
+				char = "?";
+			}
+				
+			 if (req.readyState == 4 || req.readyState == 0) {
+				 req.open("GET", resource + char + 'ms=' + new Date().getTime(), true);
+				 req.onreadystatechange = handleResponse();
+				 req.send(null);
+				 return false;
+			 }
+		 }
 	 
-	ogText = document.getElementById("orignal-textbox");
-	transText = document.getElementById("translated-text-textbox");
+	 function handleResponse() {
+		 if (req.readyState == 4) 
+		 {
+			parseState(req.responseXML);
+		 }
+	} 
+
+	function parseState(xDoc){
+		if(xDoc == null)
+			return
+			
+		//Reference the <div> tag with the ID "text"; <div id="text">XML</div>	
+		
+		var target = document.getElementById("text");
+		
+		
+		//Get the value of the xml node named <text> and place the value in <div id="text">here</div>
+		target.innerHTML += xDoc.getElementsByTagName("text")[0].childNodes[0].nodeValue;
+	}
+
+	setInterval(getRequest('GetText'), 1000);
+	//ogText = document.getElementById("orignal-textbox");
+	//transText = document.getElementById("translated-text-textbox");
 	
 	
 	

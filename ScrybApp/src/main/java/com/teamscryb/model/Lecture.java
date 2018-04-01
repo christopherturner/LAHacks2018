@@ -2,11 +2,11 @@ package com.teamscryb.model;
 
 import java.util.ArrayList;
 
-import com.teamscryb.translation.CloudTranslate;
+import com.teamscryb.translation.*;
 
 public class Lecture {
 	private ArrayList<Text> transcript;
-	private String lecturer;
+	private String teacher;
 	private String name;
 	private int size;
 	
@@ -36,12 +36,12 @@ public class Lecture {
 		return transcript;
 	}
 	
-	public String getLecturer() {
-		return lecturer;
+	public String getTeacher() {
+		return teacher;
 	}
 	
-	public void setLecturer(String lecturer) {
-		this.lecturer = lecturer;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
 	
 	public String getName() {

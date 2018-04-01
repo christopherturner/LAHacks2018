@@ -30,4 +30,8 @@ public class Database {
 	public ArrayList<Lecture> getLectures() {
 		return lectures;
 	}
+	
+	public void setLectures(ArrayList<Lecture> lectures) {
+		this.lectures = lectures;
+	}
 }

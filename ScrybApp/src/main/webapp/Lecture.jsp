@@ -11,7 +11,8 @@
 	}
 	Database database = (Database) session.getAttribute("database");
 	//get lecture list from database
-	ArrayList<Lecture> lectures = database.getLectures();
+	ArrayList<Lecture> lectures = new ArrayList<Lecture>();
+	lectures = database.getLectures();
 	String title = " " + (String) session.getAttribute("lectureName");
 	String name = " " + (String) session.getAttribute("profName");
 %>
