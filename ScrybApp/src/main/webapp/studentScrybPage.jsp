@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.teamscryb.model.*" 
 		 import="com.teamscryb.translation.*"%>
+		 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
@@ -144,7 +146,8 @@
 		var req = new XMLHttpRequest();
 		req.open("GET", "GetText?lectureName=" + document.getElementById("lectureName").value
 				+ "textIndex=" + document.getElementById("sessionTextIndex").value
-				+ "tLang=" + document.langForm.langList.value
+				+ "tLang=" + $(this).find('option:selected').attr('id');
+
 				,false);
 		req.send();
 		if(req.responseText.trim().length > 0){
@@ -163,7 +166,8 @@
 
 	
 	</script>
-		<div id = "textAnalysis"></div>
+	
+	<div id = "textAnalysis"></div>
 	
 	<script type="text/javascript">
 	function getInfo(){

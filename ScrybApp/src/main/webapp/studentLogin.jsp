@@ -36,8 +36,9 @@
 		<title>Scryb Home</title>
 		<script>
 		
-		function goToScrybPage(name){
-			localStorage.setItem("lectureName", name);
+		function goToScrybPage(){
+			localStorage.setItem("lectureName", document.SCRYBFORM.lecName.value);
+			console.log("NAME OF LECTURE: " + document.SCRYBFORM.lecName.value)
 			return true;
 		}
 		
@@ -60,9 +61,10 @@
 						<table>
 						    <c:forEach items="${classes}" var="lec">
 						        <tr>
-						        
-						            <a href = "studentScrybPage.jsp" onclick="goToScrybPage(${lec.name})" class="list-group-item list-group-item-action">${lec.name}</a>
-						        
+						        <form id = "SCRYBFORM" name = "SCRYBFORM" method = "GET" action = "studentScrybPage.jsp" onSubmit = "return goToScrybPage();">
+						            <input type = "submit" class="list-group-item list-group-item-action" value = "${lec.name}">
+						            <input type="hidden" name="lecName" value="${lec.name}">
+						        </form>
 						        </tr>
 						    </c:forEach>
 						</table>
