@@ -42,22 +42,22 @@ public class GetText extends HttpServlet {
 		int textIndex = Integer.parseInt(request.getParameter("textIndex"));
 		
 		
-		if (textIndex >= database.getLecture(lectureName).getSize())
+		if (textIndex >= database.getLecture(lectureName).getSize()) return;
 		
 		PrintWriter out = response.getWriter();
 		buffer += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		buffer += "<o-text>";
+		buffer += "<oText>";
 		buffer += (database.getLecture(lectureName).getText(textIndex).getText());
-		buffer += "</o-text>";
+		buffer += "</oText>";
 		
 		
 		String originalLanguage = request.getParameter("oLang");
 		String translateLanguage = request.getParameter("tLang");
 		
-		buffer += "<t-text>";
-		buffer += (CloudTranslate.translateText(database.getLecture(lectureIndex).getText(textIndex).getText(),
+		buffer += "<tText>";
+		buffer += (CloudTranslate.translateText(database.getLecture(lectureName).getText(textIndex).getText(),
 				originalLanguage, translateLanguage));
-		buffer += "</t-text>";
+		buffer += "</tText>";
 		
 		out.println(buffer);
 		
