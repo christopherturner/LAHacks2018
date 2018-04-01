@@ -37,6 +37,7 @@ public class GetAnalysis extends HttpServlet {
 		
 		//send classification
 		
+		out.println("<div id = \"keyterms\" class = \"center\">");
 		out.println("<span class = \"title\">Terms from this lecture</span><br>");
 		out.println("Class category: <span class = \"italic\">" + ta.getKeyNotes().getClassification()+"<br>");
 		
@@ -48,7 +49,7 @@ public class GetAnalysis extends HttpServlet {
 			out.println(LKN.get(i).getTerm());
 			out.println("<br>");
 		}
-
+		out.println("<div>");
 		out.flush();
 		out.close();
 	}
