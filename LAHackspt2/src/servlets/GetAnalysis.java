@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Analysis.KNote;
 import Analysis.TextAnaly;
 
 /**
@@ -34,8 +36,18 @@ public class GetAnalysis extends HttpServlet {
 		PrintWriter out = response.getWriter(); //send client-side code back to browser
 		
 		//send classification
-		out.println(ta.getKeyNotes().getClassification());
-		out.println(ta.getStringTerms());
+		
+		out.println("<span class = \"title\">Terms from this lecture</span><br>");
+		out.println("Class category: <span class = \"italic\">" + ta.getKeyNotes().getClassification()+"<br>");
+		
+		out.println("<br>");
+		
+		List<KNote> LKN = ta.getKeyTerms();
+		
+		for(int i = 0; i < LKN.size(); i++) {
+			out.println(LKN.get(i).getTerm());
+			out.println("<br>");
+		}
 
 		out.flush();
 		out.close();
