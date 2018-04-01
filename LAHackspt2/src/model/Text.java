@@ -1,10 +1,10 @@
-package Translation;
+package model;
 
-public class TranslationText {
+public class Text {
 	private String text;
 	private String language;
 
-	public TranslationText(String text, String language) {
+	public Text(String text, String language) {
 		this.text = text;
 		this.language = language;
 	}
