@@ -18,12 +18,13 @@
 		<script src="javascript/studentScrybPage.js"></script>
 		<title>Scryb Home</title>
 
-<script>
+	<script>
 			function getInfo(){
 				var xhttp = new XMLHttpRequest();
 				//there is also "POST"
 				xhttp.open("GET", "GetText?", false); //synchronous call
-				xhttp.send(); //just going to wait until response comes back (may time out, but take 20-30 seconds)
+				xhttp.send();
+				//responseText is what the servlet sends back
 				if(xhttp.responseText.trim().length > 0){
 					data = xhttp.responseText.trim();
 				}
