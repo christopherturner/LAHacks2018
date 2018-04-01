@@ -159,6 +159,10 @@ public class TextAnaly {
 		}
 	}
 
+	public String getStringTerms() {
+		return KeyNotes.getStringTerms();
+	}
+	
 	public static void main(String... args) throws Exception {
 		// Instantiates a client
 		TextAnaly ta = new TextAnaly();

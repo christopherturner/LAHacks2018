@@ -39,6 +39,14 @@ public class KeyNotes {
 			System.out.println(keyTerms.get(i).getTerm() + " " + keyTerms.get(i).getSalience());
 		}
 	}
+	public String getStringTerms() {
+		Collections.sort(keyTerms, new sortSalience());
+		String allTerms = "";
+		for(int i = 0; i < keyTerms.size(); i++) {
+			allTerms += keyTerms.get(i).getTerm() + "\n";
+		}
+		return allTerms;
+	}
 }
 
 class sortSalience implements Comparator<KNote>
