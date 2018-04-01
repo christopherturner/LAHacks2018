@@ -57,10 +57,50 @@
 				<div class="form-group text-center">
 					<label for="comment">Translated transcript</label><br>
 					<div class="radio">
-						<form id="radioForm">
-							<label><input type="radio" name="optradio" checked="checked" value="sp"> Spanish</label>
-							<label><input type="radio" name="optradio" value="de"> German</label>
-							<label><input type="radio" name="optradio" value="ch"> Mandarin</label>
+						<form id="langForm">
+							<select id="translateLanguageWheel" name="langList" class="selectpicker">
+								<option value="en">en (English)</option>
+								<option value="ar">ar (Ø§ÙØ¹Ø±Ø¨ÙØ©)</option>
+								<option value="de">de (Deutsch)</option>
+								<option value="fr">fr (FranÃ§ais)</option>
+								<option value="hi">hi (à¤¹à¤¿à¤à¤¦à¥)</option>
+								<option value="pt">pt (PortuguÃªs)</option>
+								<option value="ru">ru (Ð ÑÑÑÐºÐ¸Ð¹)</option>
+								<option value="es">es (EspaÃ±ol)</option>
+								<option value="tr">tr (TÃ¼rk)</option>
+								<option value="nl">nl (Nederlands)</option>
+								<option value="it">it (Italiano)</option>
+								<option value="pl">pl (Polski)</option>
+								<option value="ro">ro (RomÃ¢n)</option>
+								<option value="sv">sv (Svensk)</option>
+								<option value="vi">vi (Viá»t)</option>
+								<option value="th">th (à¸ à¸²à¸©à¸²à¹à¸à¸¢)</option>
+								<option value="zh-CN">zh-CN (ä¸­æç®ä½)</option>
+								<option value="zh-TW">zh-TW (ä¸­åå³çµ±)</option>
+								<option value="ko">ko (íêµ­ì)</option>
+								<option value="ja">ja (æ¥æ¬äºº)</option>
+								<option value="el">el (ÎµÎ»Î»Î·Î½Î¹ÎºÎ¬)</option>
+								<option value="ts">ts (à®¤à®®à®¿à®´à¯)</option>
+								<option value="hv">hy (Õ°Õ¡ÕµÕ¥ÖÕ¥Õ¶)</option>
+								<option value="bs">bs (Bosanski)</option>
+								<option value="ca">ca (CatalÃ )</option>
+								<option value="hr">hr (Hrvatski)</option>
+								<option value="da">dq (Dansk)</option>
+								<option value="eo">eo (Esperanto)</option>
+								<option value="fi">fi (Suomalainen)</option>
+								<option value="ht">ht (Haian kreyÃ²l)</option>
+								<option value="hu">hu (Magyar)</option>
+								<option value="is">is (Icelandic)</option>
+								<option value="id">id (Indonesia)</option>
+								<option value="la">la (Latinum)</option>
+								<option value="lv">lv (Latvijas)</option>
+								<option value="mk">mk (ÐÐ°ÐºÐµÐ´Ð¾Ð½ÑÐºÐ¸)</option>
+								<option value="no">no (Norsk)</option>
+								<option value="sr">sr (Ð¡ÑÐ¿ÑÐºÐ¸)</option>
+								<option value="sk">sk (SlovenskÃ½)</option>
+								<option value="sw">sw (Kiswahili)</option>
+								<option value="cy">cy (Cymraeg)</option>
+							</select>
 						</form>
 					</div>
 					<textarea class="form-control" id="translated-textbox">
@@ -86,13 +126,13 @@
 		var req = new XMLHttpRequest();
 		req.open("GET", "GetText?lectureName=" + document.getElementById("lectureName").value
 				+ "textIndex=" + document.getElementById("sessionTextIndex").value
-				+ "tLang=" + document.radioForm.optradio.value;
-				, false);
+				+ "tLang=" + document.langForm.langList.value
+				,false);
 		req.send();
 		if(req.responseText.trim().length > 0){
 			data = req.responseText.trim();
 			parser = new DOMParser();
-			xmlDoc = parser.parseFromString(data,"text/xml");
+			xmlDoc = parser.parseFromString(data,"text/xml");s
 
 			document.getElementById("orignal-textbox").innerHTML += 
 				xmlDoc.getElementsByTagName("oText")[0].childNodes[0].nodeValue;
@@ -107,22 +147,22 @@
 	</script>
 		<div id = "textAnalysis"></div>
 	
--	<script type="text/javascript">
--	function getInfo(){
--		var xhttp = new XMLHttpRequest();
--		//there is also "POST"
--		var text = "The Impact of Viking Raids For these reasons, Viking became a word of terror for the people of Northern Europe, and many historians tend to treat Vikings as mere disruptions to civilization. Yet it was in this disruptive role that the Vikings had, perhaps, their most profound impact on Western civilization. The Vikings essentially turned the tide in Europe from centralized imperialism to decentralized feudalism. Viking raids began stepping up around the end of the 8th century, just as Charlemagne was trying to unite Europe into the Carolingian Empire. This centralized empire was not suitable to deal with the amphibious raids of the Vikings. Try as he might, Charlemagne could not possibly hope to defend thousands of miles of coastline from Viking invasions. Moreover, since the shallow Viking longships could travel upriver, not even the inland empire was safe, as the Vikings proved quite clearly a century later by laying siege to Paris in 885. Charlemagne's empire was so short-lived because it could not provide the most basic services an empire is supposed to provide its subjects: peace and protection. As Charlemagne's empire fell apart, Europeans needed to find a new way to protect themselves against these Viking raiders, something local and small enough to be responsive but powerful enough to protect the people and their property.";
--
--		xhttp.open("GET", "GetAnalysis?text=" + text, false); //synchronous call
--		xhttp.send();
--		//responseText is what the servlet sends back
--		if(xhttp.responseText.trim().length > 0){
--			data = xhttp.responseText.trim();
--		}
--		
--		document.getElementById("textAnalysis").innerHTML = data;
--	}
--	
--	getInfo()</script>
+	<script type="text/javascript">
+	function getInfo(){
+		var xhttp = new XMLHttpRequest();
+		// there is also "POST"
+		var text = "The Impact of Viking Raids For these reasons, Viking became a word of terror for the people of Northern Europe, and many historians tend to treat Vikings as mere disruptions to civilization. Yet it was in this disruptive role that the Vikings had, perhaps, their most profound impact on Western civilization. The Vikings essentially turned the tide in Europe from centralized imperialism to decentralized feudalism. Viking raids began stepping up around the end of the 8th century, just as Charlemagne was trying to unite Europe into the Carolingian Empire. This centralized empire was not suitable to deal with the amphibious raids of the Vikings. Try as he might, Charlemagne could not possibly hope to defend thousands of miles of coastline from Viking invasions. Moreover, since the shallow Viking longships could travel upriver, not even the inland empire was safe, as the Vikings proved quite clearly a century later by laying siege to Paris in 885. Charlemagne's empire was so short-lived because it could not provide the most basic services an empire is supposed to provide its subjects: peace and protection. As Charlemagne's empire fell apart, Europeans needed to find a new way to protect themselves against these Viking raiders, something local and small enough to be responsive but powerful enough to protect the people and their property.";
+
+		xhttp.open("GET", "GetAnalysis?text=" + text, false); //synchronous call
+		xhttp.send();
+		//responseText is what the servlet sends back
+		if(xhttp.responseText.trim().length > 0){
+			data = xhttp.responseText.trim();
+		}
+		
+		document.getElementById("textAnalysis").innerHTML = data;
+	}
+	
+	getInfo()</script>
 
 </html>
